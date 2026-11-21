@@ -1,0 +1,89 @@
+
+--[[
+    UAER_UI
+    Basic Usage Example
+    Version: 0.1.0
+]]
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+-- Load UAER_UI
+local UI = require(
+    ReplicatedStorage:WaitForChild("UAER_UI")
+)
+
+-- Create window
+local Window = UI:CreateWindow({
+    Title = "UAER_UI Example",
+    Subtitle = "Basic demonstration",
+    Author = "Example User",
+    Credits = "Powered by UAER_UI",
+    Theme = "Midnight"
+})
+
+-- Main tab
+local Main = Window:CreateTab("Main")
+
+Main:CreateSection("Basic Components")
+
+Main:CreateButton({
+    Name = "Test Button",
+    Callback = function()
+        Window:Notify({
+            Title = "Success",
+            Content = "Button works!",
+            Duration = 3
+        })
+    end
+})
+
+Main:CreateToggle({
+    Name = "Test Toggle",
+    Default = false,
+    Callback = function(value)
+        print("Toggle:", value)
+    end
+})
+
+Main:CreateSlider({
+    Name = "Test Slider",
+    Min = 1,
+    Max = 100,
+    Default = 25,
+    Callback = function(value)
+        print("Slider:", value)
+    end
+})
+
+Main:CreateDropdown({
+    Name = "Choose Theme",
+    Options = {
+        "Midnight",
+        "Ocean",
+        "Crimson",
+        "Light"
+    },
+    Default = "Midnight",
+    Callback = function(value)
+        Window:SetTheme(value)
+    end
+})
+
+Main:CreateInput({
+    Name = "Username",
+    Placeholder = "Enter username...",
+    Callback = function(value)
+        print("Username:", value)
+    end
+})
+
+Main:CreateParagraph({
+    Title = "Welcome",
+    Content = "This interface was created using the UAER_UI library."
+})
+
+Window:Notify({
+    Title = "UAER_UI Loaded",
+    Content = "Your interface is ready!",
+    Duration = 4
+})
